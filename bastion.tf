@@ -28,23 +28,21 @@ resource "aws_network_acl" "bastion_subnet_acl" {
   subnet_ids = [aws_subnet.bastion_subnet.id]
 
   ingress {
-    action          = "allow"
-    cidr_block      = "0.0.0.0/0"
-    ipv6_cidr_block = "::/0"
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
-    rule_no         = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 22
+    to_port    = 22
+    protocol   = "tcp"
+    rule_no    = 100
   }
 
   egress {
-    action          = "allow"
-    cidr_block      = "0.0.0.0/0"
-    ipv6_cidr_block = "::/0"
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    rule_no         = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 0
+    protocol   = "-1"
+    rule_no    = 100
   }
 }
 
@@ -72,11 +70,11 @@ resource "aws_security_group" "bastion" {
 }
 
 resource "aws_instance" "bastion" {
-  ami               = data.aws_ami.ubuntu
+  ami               = data.aws_ami.ubuntu.id
   instance_type     = "t2.micro"
   availability_zone = var.aws_availability_zone
   security_groups   = [aws_security_group.bastion.id]
-  subnet_id         = aws_subnet.bastion_subnet
+  subnet_id         = aws_subnet.bastion_subnet.id
 
   tags = {
     "Name" = "Bastion"
@@ -84,6 +82,6 @@ resource "aws_instance" "bastion" {
 }
 
 resource "aws_eip" "bastion" {
-  instance = aws_instance.bastion
+  instance = aws_instance.bastion.id
   vpc      = true
 }
