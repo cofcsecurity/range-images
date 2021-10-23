@@ -12,8 +12,9 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       - name: Retrieve State
-        uses: actions/download-artifact@v2
+        uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: terraform-deploy.yml
           name: range-tf-state
       - name: Terraform Format
         run: terraform fmt -check
