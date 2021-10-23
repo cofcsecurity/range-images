@@ -30,4 +30,10 @@ jobs:
           -var="aws_region=${{ secrets.AWS_REGION }}" \
           -input=false \
           -auto-approve
+      - name: Archive State
+        uses: actions/upload-artifact@v2
+        with:
+          name: range-tf-state
+          path: ./terraform.tfstate
+          retention-days: 30
   
