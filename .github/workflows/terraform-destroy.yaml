@@ -1,5 +1,11 @@
 name: Terraform-Destroy
 
+# ------------------------------- NOTE -------------------------------
+# This workflow currently cannot access the tf state artifact produced
+# by terraform-deploy. To access the artifact the repo must either be 
+# made public or a pa token must be supplied to the download artifact 
+# action. For now just download the state artifact and destroy manually.
+
 on:
   workflow_dispatch:
 
@@ -12,8 +18,9 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
       - name: Retrieve State
-        uses: actions/download-artifact@v2
+        uses: dawidd6/action-download-artifact@v2
         with:
+          workflow: terraform-deploy.yml
           name: range-tf-state
       - name: Terraform Format
         run: terraform fmt -check
