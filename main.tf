@@ -30,6 +30,6 @@ resource "aws_internet_gateway" "range_gateway" {
 }
 
 resource "aws_key_pair" "range_ssh_public_key" {
-  key_name = "range_key"
+  key_name   = "range_key"
   public_key = var.range_ssh_public_key
 }

@@ -9,5 +9,6 @@ variable "aws_availability_zone" {
 }
 
 variable "range_ssh_public_key" {
-  type = string
+  type      = string
+  sensitive = true
 }

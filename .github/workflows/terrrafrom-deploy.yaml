@@ -20,8 +20,14 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: ${{ secrets.aws_secret_key_id }}
-          aws-secret-access-key: ${{ secrets.aws_secret_access_key }}
+          aws-access-key-id: ${{ secrets.AWS_SECRET_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
       - name: Terraform Apply
-        run: terraform apply -input=false -auto-approve
+        run: |
+          terraform apply \
+          -var="range_ssh_public_key=${{ secrets.RANGE_SSH_PUBLIC_KEY }}" \
+          -var="aws_region=${{ secrets.AWS_REGION }}" \
+          -input=false \
+          -auto-approve
   
