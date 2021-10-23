@@ -75,6 +75,7 @@ resource "aws_instance" "bastion" {
   availability_zone = var.aws_availability_zone
   security_groups   = [aws_security_group.bastion.id]
   subnet_id         = aws_subnet.bastion_subnet.id
+  key_name = aws_key_pair.range_ssh_public_key.key_name
 
   tags = {
     "Name" = "Bastion"
