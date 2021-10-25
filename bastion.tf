@@ -4,8 +4,13 @@ resource "aws_subnet" "bastion_subnet" {
   availability_zone = var.aws_availability_zone
 }
 
+resource "aws_eip" "bastion_nat_gateway" {
+  vpc = true
+}
+
 resource "aws_nat_gateway" "bastion_nat_gateway" {
-  connectivity_type = "private"
+  connectivity_type = "public"
+  allocation_id     = aws_eip.bastion_nat_gateway.id
   subnet_id         = aws_subnet.bastion_subnet.id
 }
 
@@ -30,9 +35,9 @@ resource "aws_network_acl" "bastion_subnet_acl" {
   ingress {
     action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port  = 22
-    to_port    = 22
-    protocol   = "tcp"
+    from_port  = 0
+    to_port    = 0
+    protocol   = "-1"
     rule_no    = 100
   }
 
