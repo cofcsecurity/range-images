@@ -30,10 +30,23 @@ jobs:
           -var="aws_region=${{ secrets.AWS_REGION }}" \
           -input=false \
           -auto-approve
+      # - name: Archive State
+      #   if: always()
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: range-tf-state
+      #     path: ./terraform.tfstate
+      #     retention-days: 30
+      - name: Encrypt State
+        if: always()
+        run: |
+          echo "${{ secrets.COFC_SECURITY_GPG_PUBLIC_KEY }}" | gpg --import
+          gpg --trust-model always -er ${{ secrets.COFC_SECURITY_GPG_FINGERPRINT }} ./terraform.tfstate
       - name: Archive State
+        if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: range-tf-state
-          path: ./terraform.tfstate
+          name: range-tf-state-enc
+          path: ./terraform.tfstate.gpg
           retention-days: 30
   
