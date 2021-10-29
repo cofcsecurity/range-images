@@ -21,6 +21,29 @@ resource "aws_vpc" "range" {
   }
 }
 
+resource "aws_security_group" "range_default_sg" {
+  name        = "range_default_sg"
+  description = "Range default security group"
+  vpc_id      = aws_vpc.range.id
+  ingress {
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    description      = "Allow all"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+  }
+
+  egress {
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+    description      = "Allow all"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+  }
+}
+
 resource "aws_internet_gateway" "range_gateway" {
   vpc_id = aws_vpc.range.id
 

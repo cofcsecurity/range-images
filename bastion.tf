@@ -51,34 +51,11 @@ resource "aws_network_acl" "bastion_subnet_acl" {
   }
 }
 
-resource "aws_security_group" "bastion" {
-  name        = "range_bastion_security_group"
-  description = "Range security group for Bastion"
-  vpc_id      = aws_vpc.range.id
-  ingress {
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-    description      = "Allow SSH"
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-  }
-
-  egress {
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-    description      = "Allow all"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-  }
-}
-
 resource "aws_instance" "bastion" {
   ami               = data.aws_ami.ubuntu.id
   instance_type     = "t2.micro"
   availability_zone = var.aws_availability_zone
-  security_groups   = [aws_security_group.bastion.id]
+  security_groups   = [aws_security_group.range_default_sg.id]
   subnet_id         = aws_subnet.bastion_subnet.id
   key_name          = aws_key_pair.range_ssh_public_key.key_name
 

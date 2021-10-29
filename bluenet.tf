@@ -41,34 +41,11 @@ resource "aws_network_acl" "blue_subnet_acl" {
   }
 }
 
-resource "aws_security_group" "bluenet" {
-  name        = "range_bluenet_security_group"
-  description = "Range security group for BlueNet"
-  vpc_id      = aws_vpc.range.id
-  ingress {
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-    description      = "Allow all"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-  }
-
-  egress {
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-    description      = "Allow all"
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-  }
-}
-
 resource "aws_instance" "bluehost" {
   ami               = data.aws_ami.ubuntu.id
   instance_type     = "t2.micro"
   availability_zone = var.aws_availability_zone
-  security_groups   = [aws_security_group.bluenet.id]
+  security_groups   = [aws_security_group.range_default_sg.id]
   subnet_id         = aws_subnet.blue_subnet.id
   key_name          = aws_key_pair.range_ssh_public_key.key_name
 
