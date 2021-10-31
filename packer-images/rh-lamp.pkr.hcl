@@ -1,6 +1,6 @@
 
 source "amazon-ebs" "rh" {
-  ami_name      = "centos-7-lamp-stack"
+  ami_name      = "rh-7-lamp-stack"
   instance_type = "t2.micro"
   region        = "us-east-1"
   source_ami    = "ami-785bae10"
