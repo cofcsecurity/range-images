@@ -18,7 +18,7 @@ build {
   ]
 
 
-  provisioner "shell" {
+  provisioner "shell" { # provisioner for installing Apache
 
     inline = [
 
@@ -32,7 +32,7 @@ build {
 
   }
 
-  provisioner "shell" {
+  provisioner "shell" { # provisioner for installing MariaDB
 
 
     inline = [
@@ -47,7 +47,7 @@ build {
 
   }
 
-  provisioner "shell" {
+  provisioner "shell" { # provisioner for installing PHP
 
     inline = [
 
