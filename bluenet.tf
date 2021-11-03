@@ -41,13 +41,26 @@ resource "aws_network_acl" "blue_subnet_acl" {
   }
 }
 
+resource "aws_network_interface" "bluehost_interface" {
+  subnet_id       = aws_subnet.blue_subnet.id
+  private_ips     = ["10.0.10.5"]
+  security_groups = [aws_security_group.range_default_sg.id]
+
+  tags = {
+    Name = "range_bluehost"
+  }
+}
+
 resource "aws_instance" "bluehost" {
   ami               = data.aws_ami.ubuntu.id
   instance_type     = "t2.micro"
   availability_zone = var.aws_availability_zone
-  security_groups   = [aws_security_group.range_default_sg.id]
-  subnet_id         = aws_subnet.blue_subnet.id
   key_name          = aws_key_pair.range_ssh_public_key.key_name
+
+  network_interface {
+    network_interface_id = aws_network_interface.bluehost_interface.id
+    device_index         = 0
+  }
 
   tags = {
     "Name" = "BlueHost"
