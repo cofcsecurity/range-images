@@ -13,7 +13,7 @@ source "amazon-ebs" "kali" {
 
 build {
 
-  name = "cofc-kali"
+  name = "red-kali"
   sources = [
     "source.amazon-ebs.kali"
   ]

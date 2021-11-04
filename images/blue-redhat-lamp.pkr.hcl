@@ -12,7 +12,7 @@ source "amazon-ebs" "rh" {
 
 build {
 
-  name = "centos7-lamp"
+  name = "blue-redhat-lamp"
   sources = [
     "source.amazon-ebs.rh"
   ]

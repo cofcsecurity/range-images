@@ -17,7 +17,7 @@ source "amazon-ebs" "ubuntu" {
 
 build { # build the machine for the image
 
-  name = "ubuntu-18.04-lamp" # name of temp ec2 for running commands
+  name = "blue-ubuntu-lamp" # name of temp ec2 for running commands
   sources = [
     "source.amazon-ebs.ubuntu"
   ]
