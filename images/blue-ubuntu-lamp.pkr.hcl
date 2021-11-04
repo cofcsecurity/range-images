@@ -1,6 +1,6 @@
 
-source "amazon-ebs" "ubuntu" {
-  ami_name      = "ubuntu-18.04-lamp-stack"
+source "amazon-ebs" "ubuntu-bionic" {
+  ami_name      = "blue-ubuntu-lamp"
   instance_type = "t2.micro"
   region        = "us-east-1"
   source_ami_filter { # search for AMI
@@ -17,9 +17,9 @@ source "amazon-ebs" "ubuntu" {
 
 build { # build the machine for the image
 
-  name = "blue-ubuntu-lamp" # name of temp ec2 for running commands
+  name = "lamp" # name of temp ec2 for running commands
   sources = [
-    "source.amazon-ebs.ubuntu"
+    "source.amazon-ebs.ubuntu-bionic"
   ]
 
 

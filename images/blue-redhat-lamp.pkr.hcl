@@ -1,6 +1,6 @@
 
 source "amazon-ebs" "rh" {
-  ami_name      = "rh-7-lamp-stack" # our AMI name
+  ami_name      = "blue-redhat-lamp" # our AMI name
   instance_type = "t2.micro"
   region        = "us-east-1"
   source_ami    = "ami-785bae10"
@@ -12,7 +12,7 @@ source "amazon-ebs" "rh" {
 
 build {
 
-  name = "blue-redhat-lamp"
+  name = "lamp"
   sources = [
     "source.amazon-ebs.rh"
   ]
