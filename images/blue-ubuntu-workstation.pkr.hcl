@@ -32,6 +32,6 @@ build {
 
   # Setup default blue team users
   provisioner "shell" {
-    script = "./scripts/blue_default_users.sh"
+    script = "./images/scripts/blue_default_users.sh"
   }
 }
