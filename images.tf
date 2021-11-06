@@ -20,6 +20,6 @@ data "aws_ami" "kali" {
 
   filter {
     name   = "name"
-    values = ["cofc-kali"]
+    values = ["red-kali"]
   }
 }
