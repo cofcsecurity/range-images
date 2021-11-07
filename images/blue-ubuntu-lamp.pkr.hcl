@@ -30,7 +30,7 @@ source "amazon-ebs" "ubuntu-bionic" {
 
 build { # build the machine for the image
 
-  name = "lamp" # name of temp ec2 for running commands
+  name = "blue-lamp" # name of temp ec2 for running commands
   sources = [
     "source.amazon-ebs.ubuntu-bionic"
   ]

@@ -25,7 +25,7 @@ source "amazon-ebs" "rh" {
 
 build {
 
-  name = "lamp"
+  name = "blue-lamp"
   sources = [
     "source.amazon-ebs.rh"
   ]
