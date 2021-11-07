@@ -14,7 +14,7 @@ Images (mis)configured for blue team use.
 | ---- | ---------------- | ------- | ----------- |
 | blue-redhat-lamp | Red Hat Linux | 7.0 | Red Hat image configured as a LAMP stack |
 | blue-ubuntu-lamp | Ubuntu Server | 18.04 | Ubuntu Server image configured as a LAMP stack |
-
+| blue-ubuntu-splunk | Ubuntu Server | 18.04 | Splunk SIEM for network/event monitoring|
 ### Red
 
 Images configured for red team use.
