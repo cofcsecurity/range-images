@@ -1,0 +1,26 @@
+name: Packer-Check
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Packer Init
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: init
+          target: ./images/*.pkr.hcl
+      - name: Packer Format Check
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: fmt
+          arguments: -check
+          target: ./images/*.pkr.hcl
+      - name: Packer Validate
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: validate
+          target: ./images/*.pkr.hcl

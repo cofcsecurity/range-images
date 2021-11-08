@@ -1,14 +1,28 @@
+packer {
+  required_plugins {
+    amazon = {
+      version = ">= 0.0.2"
+      source  = "github.com/hashicorp/amazon"
+    }
+  }
+}
+
 source "amazon-ebs" "kali" {
 
-  ami_name      = "cofc-kali"
-  instance_type = "t2.micro"
-  region        = "us-east-1"
-  source_ami    = "ami-0212d39aa1d70f26b" # kali AMI ID for future reference...
-  ssh_username  = "kali"                  # non-root user to ssh into the machine with
-  ssh_pty       = "true"                  # spawn a pseudo terminal for executing commands
-  ssh_timeout   = "60m"
-  subnet_id     = "subnet-1ad89f57"
+  ami_name              = "red-kali"
+  instance_type         = "t2.micro"
+  region                = "us-east-1"
+  source_ami            = "ami-0212d39aa1d70f26b" # kali AMI ID for future reference...
+  ssh_username          = "kali"                  # non-root user to ssh into the machine with
+  ssh_pty               = "true"                  # spawn a pseudo terminal for executing commands
+  ssh_timeout           = "60m"
+  force_deregister      = true
+  force_delete_snapshot = true
 
+  tag {
+    key   = "Name"
+    value = "Range Image"
+  }
 }
 
 build {
