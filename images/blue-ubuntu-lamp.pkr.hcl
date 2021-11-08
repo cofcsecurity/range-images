@@ -8,9 +8,12 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu-bionic" {
-  ami_name      = "blue-ubuntu-lamp"
-  instance_type = "t2.micro"
-  region        = "us-east-1"
+  ami_name              = "blue-ubuntu-lamp"
+  instance_type         = "t2.micro"
+  region                = "us-east-1"
+  force_deregister      = true
+  force_delete_snapshot = true
+
   source_ami_filter { # search for AMI
     filters = {
       name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"
@@ -30,7 +33,7 @@ source "amazon-ebs" "ubuntu-bionic" {
 
 build { # build the machine for the image
 
-  name = "lamp" # name of temp ec2 for running commands
+  name = "blue-lamp" # name of temp ec2 for running commands
   sources = [
     "source.amazon-ebs.ubuntu-bionic"
   ]
