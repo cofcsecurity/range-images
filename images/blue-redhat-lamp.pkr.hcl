@@ -1,3 +1,11 @@
+packer {
+  required_plugins {
+    amazon = {
+      version = ">= 0.0.2"
+      source  = "github.com/hashicorp/amazon"
+    }
+  }
+}
 
 source "amazon-ebs" "rh" {
   ami_name      = "blue-redhat-lamp" # our AMI name
@@ -8,6 +16,11 @@ source "amazon-ebs" "rh" {
   ssh_pty       = "true"     # spawn a pseudo terminal to execute commands
   ssh_timeout   = "60m"
   subnet_id     = "subnet-1ad89f57"
+
+  tag {
+    key   = "Name"
+    value = "Range Image"
+  }
 }
 
 build {

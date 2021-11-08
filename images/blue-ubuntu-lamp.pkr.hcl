@@ -1,3 +1,11 @@
+packer {
+  required_plugins {
+    amazon = {
+      version = ">= 0.0.2"
+      source  = "github.com/hashicorp/amazon"
+    }
+  }
+}
 
 source "amazon-ebs" "ubuntu-bionic" {
   ami_name      = "blue-ubuntu-lamp"
@@ -13,6 +21,11 @@ source "amazon-ebs" "ubuntu-bionic" {
     owners      = ["099720109477"]
   }
   ssh_username = "ubuntu" # non-root user to ssh into
+
+  tag {
+    key   = "Name"
+    value = "Range Image"
+  }
 }
 
 build { # build the machine for the image

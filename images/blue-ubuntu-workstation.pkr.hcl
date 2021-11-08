@@ -8,9 +8,13 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu-xenial" {
-  ami_name      = "blue-ubuntu-workstation"
-  instance_type = "t2.micro"
-  region        = "us-east-1"
+  ami_name              = "blue-ubuntu-workstation"
+  instance_type         = "t2.micro"
+  region                = "us-east-1"
+  ssh_username          = "ubuntu"
+  force_deregister      = true
+  force_delete_snapshot = true
+
   source_ami_filter {
     filters = {
       name                = "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*"
@@ -20,7 +24,11 @@ source "amazon-ebs" "ubuntu-xenial" {
     most_recent = true
     owners      = ["099720109477"]
   }
-  ssh_username = "ubuntu"
+
+  tag {
+    key   = "Name"
+    value = "Range Image"
+  }
 }
 
 build {
