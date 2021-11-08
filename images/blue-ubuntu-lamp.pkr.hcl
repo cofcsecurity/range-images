@@ -8,9 +8,12 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu-bionic" {
-  ami_name      = "blue-ubuntu-lamp"
-  instance_type = "t2.micro"
-  region        = "us-east-1"
+  ami_name              = "blue-ubuntu-lamp"
+  instance_type         = "t2.micro"
+  region                = "us-east-1"
+  force_deregister      = true
+  force_delete_snapshot = true
+
   source_ami_filter { # search for AMI
     filters = {
       name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"

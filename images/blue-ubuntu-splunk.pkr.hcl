@@ -1,13 +1,23 @@
+packer {
+  required_plugins {
+    amazon = {
+      version = ">= 0.0.2"
+      source  = "github.com/hashicorp/amazon"
+    }
+  }
+}
+
 source "amazon-ebs" "splunk" {
 
-  ami_name      = "blue-ubuntu-splunk"
-  instance_type = "t2.micro"
-  region        = "us-east-1"
-  source_ami    = "ami-0279c3b3186e54acd" # ubuntu 18.04 base AMI
-  ssh_username  = "ubuntu"                # non-root user to ssh into the machine with
-  ssh_pty       = "true"                  # spawn a pseudo terminal for executing commands
-  ssh_timeout   = "60m"
-  subnet_id     = "subnet-1ad89f57"
+  ami_name              = "blue-ubuntu-splunk"
+  instance_type         = "t2.micro"
+  region                = "us-east-1"
+  source_ami            = "ami-0279c3b3186e54acd" # ubuntu 18.04 base AMI
+  ssh_username          = "ubuntu"                # non-root user to ssh into the machine with
+  ssh_pty               = "true"                  # spawn a pseudo terminal for executing commands
+  ssh_timeout           = "60m"
+  force_deregister      = true
+  force_delete_snapshot = true
 
 }
 

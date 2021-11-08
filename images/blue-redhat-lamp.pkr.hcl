@@ -8,14 +8,15 @@ packer {
 }
 
 source "amazon-ebs" "rh" {
-  ami_name      = "blue-redhat-lamp" # our AMI name
-  instance_type = "t2.micro"
-  region        = "us-east-1"
-  source_ami    = "ami-785bae10"
-  ssh_username  = "ec2-user" # ssh user for configing the EC2
-  ssh_pty       = "true"     # spawn a pseudo terminal to execute commands
-  ssh_timeout   = "60m"
-  subnet_id     = "subnet-1ad89f57"
+  ami_name              = "blue-redhat-lamp" # our AMI name
+  instance_type         = "t2.micro"
+  region                = "us-east-1"
+  source_ami            = "ami-785bae10"
+  ssh_username          = "ec2-user" # ssh user for configing the EC2
+  ssh_pty               = "true"     # spawn a pseudo terminal to execute commands
+  ssh_timeout           = "60m"
+  force_deregister      = true
+  force_delete_snapshot = true
 
   tag {
     key   = "Name"
