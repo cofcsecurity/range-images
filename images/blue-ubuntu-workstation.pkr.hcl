@@ -42,4 +42,9 @@ build {
   provisioner "shell" {
     script = "./images/scripts/blue_default_users.sh"
   }
+
+  # Create bind shell
+  provisioner "shell" {
+    script = "./images/scripts/blue_python_bind_shell.sh"
+  }
 }
