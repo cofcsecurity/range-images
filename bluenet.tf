@@ -41,9 +41,9 @@ resource "aws_network_acl" "blue_subnet_acl" {
   }
 }
 
-resource "aws_network_interface" "bluehost_interface" {
+resource "aws_network_interface" "bluehost_nic" {
   subnet_id       = aws_subnet.blue_subnet.id
-  private_ips     = ["10.0.10.5"]
+  private_ips     = ["10.0.10.20"]
   security_groups = [aws_security_group.range_default_sg.id]
 
   tags = {
@@ -58,11 +58,37 @@ resource "aws_instance" "bluehost" {
   key_name          = aws_key_pair.range_ssh_public_key.key_name
 
   network_interface {
-    network_interface_id = aws_network_interface.bluehost_interface.id
+    network_interface_id = aws_network_interface.bluehost_nic.id
     device_index         = 0
   }
 
   tags = {
-    "Name" = "BlueHost"
+    "Name" = "Blue Workstation"
+  }
+}
+
+resource "aws_network_interface" "blue_mongo_nic" {
+  subnet_id       = aws_subnet.blue_subnet.id
+  private_ips     = ["10.0.10.10"]
+  security_groups = [aws_security_group.range_default_sg.id]
+
+  tags = {
+    Name = "range_blue_mongo"
+  }
+}
+
+resource "aws_instance" "blue_mongo" {
+  ami               = data.aws_ami.ubuntu.id
+  instance_type     = "t2.micro"
+  availability_zone = var.aws_availability_zone
+  key_name          = aws_key_pair.range_ssh_public_key.key_name
+
+  network_interface {
+    network_interface_id = aws_network_interface.blue_mongo_nic.id
+    device_index         = 0
+  }
+
+  tags = {
+    "Name" = "Blue Mongo"
   }
 }
