@@ -1,17 +1,11 @@
 data "aws_ami" "ubuntu" {
   most_recent = true
+  owners      = ["self"]
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+    values = ["blue-ubuntu-workstation"]
   }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
 }
 
 data "aws_ami" "kali" {
@@ -30,6 +24,6 @@ data "aws_ami" "mongo" {
 
   filter {
     name   = "name"
-    values = ["blue-ubuntu-mongo"]
+    values = ["blue-ubuntu-mongodb"]
   }
 }
