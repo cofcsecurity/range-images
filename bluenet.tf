@@ -78,7 +78,7 @@ resource "aws_network_interface" "blue_mongo_nic" {
 }
 
 resource "aws_instance" "blue_mongo" {
-  ami               = data.aws_ami.ubuntu.id
+  ami               = data.aws_ami.mongo.id
   instance_type     = "t2.micro"
   availability_zone = var.aws_availability_zone
   key_name          = aws_key_pair.range_ssh_public_key.key_name

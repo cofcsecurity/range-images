@@ -23,3 +23,13 @@ data "aws_ami" "kali" {
     values = ["red-kali"]
   }
 }
+
+data "aws_ami" "mongo" {
+  most_recent = true
+  owners      = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["blue-ubuntu-mongo"]
+  }
+}
