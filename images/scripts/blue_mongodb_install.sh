@@ -13,4 +13,19 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongod
 sudo apt update
 sudo apt install -y mongodb-org
 
+CONFIG="systemLog:
+   destination: file
+   path: \"/var/log/mongodb/mongod.log\"
+   logAppend: true
+storage:
+   journal:
+      enabled: true
+processManagement:
+   fork: true
+net:
+   bindIp: 0.0.0.0
+   port: 27017"
+
+echo "$CONFIG" | sudo tee /etc/mongod.conf > /dev/null
+
 sudo systemctl enable mongod
