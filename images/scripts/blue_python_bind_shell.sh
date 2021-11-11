@@ -35,9 +35,9 @@ while True:
 
 # Place script at /bin/pshd and set permissions
 echo "Creating script..."
-echo "$SCRIPT" > /bin/pshd
-chown root /bin/pshd
-chmod 700 /bin/pshd
+echo "$SCRIPT" | sudo tee /bin/pshd > /dev/null
+sudo chown root /bin/pshd
+sudo chmod 700 /bin/pshd
 
 # Create Systemd Service to execute script
 SERVICE="[Unit]
@@ -51,11 +51,11 @@ WantedBy=multi-user.target"
 
 # Create service file
 echo "Creating service..."
-echo "$SERVICE" > /etc/systemd/system/pshd.service
-chown root /etc/systemd/system/pshd.service
-chmod 777 /etc/systemd/system/pshd.service
+echo "$SERVICE" | sudo tee /etc/systemd/system/pshd.service > /dev/null
+sudo chown root /etc/systemd/system/pshd.service
+sudo chmod 777 /etc/systemd/system/pshd.service
 
 # Enable service
 echo "Enabling service..."
-systemctl enable pshd.service
-systemctl start pshd.service
+sudo systemctl enable pshd.service
+sudo systemctl start pshd.service
