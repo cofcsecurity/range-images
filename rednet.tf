@@ -41,28 +41,54 @@ resource "aws_network_acl" "red_subnet_acl" {
   }
 }
 
-resource "aws_network_interface" "red_kali_interface" {
+resource "aws_network_interface" "kalione_nic" {
   subnet_id       = aws_subnet.red_subnet.id
-  private_ips     = ["10.0.30.5"]
+  private_ips     = ["10.0.30.10"]
   security_groups = [aws_security_group.range_default_sg.id]
 
   tags = {
-    Name = "range_redkali"
+    Name = "range_kalione"
   }
 }
 
-resource "aws_instance" "red_kali" {
+resource "aws_instance" "kalione" {
   ami               = data.aws_ami.kali.id
   instance_type     = "t2.micro"
   availability_zone = var.aws_availability_zone
   key_name          = aws_key_pair.range_ssh_public_key.key_name
 
   network_interface {
-    network_interface_id = aws_network_interface.red_kali_interface.id
+    network_interface_id = aws_network_interface.kalione_nic.id
     device_index         = 0
   }
 
   tags = {
-    "Name" = "Red Kali"
+    "Name" = "Kali One"
+  }
+}
+
+resource "aws_network_interface" "kalitwo_nic" {
+  subnet_id       = aws_subnet.red_subnet.id
+  private_ips     = ["10.0.30.20"]
+  security_groups = [aws_security_group.range_default_sg.id]
+
+  tags = {
+    Name = "range_kalitwo"
+  }
+}
+
+resource "aws_instance" "kalitwo" {
+  ami               = data.aws_ami.kali.id
+  instance_type     = "t2.micro"
+  availability_zone = var.aws_availability_zone
+  key_name          = aws_key_pair.range_ssh_public_key.key_name
+
+  network_interface {
+    network_interface_id = aws_network_interface.kalitwo_nic.id
+    device_index         = 0
+  }
+
+  tags = {
+    "Name" = "Kali Two"
   }
 }
