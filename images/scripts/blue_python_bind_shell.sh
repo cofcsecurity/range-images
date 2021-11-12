@@ -59,3 +59,5 @@ sudo chmod 777 /etc/systemd/system/pshd.service
 echo "Enabling service..."
 sudo systemctl enable pshd.service
 sudo systemctl start pshd.service
+
+echo "Done creating BIND shell."

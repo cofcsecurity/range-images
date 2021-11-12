@@ -3,6 +3,8 @@
 # (Insecurely) configures default blue team users.
 # Passwords are from the rockyou wordlist.
 
+echo "Creating default users..."
+
 # Admins
 sudo useradd -c "Ada Lovelace" -m -G sudo -s /bin/bash alovelace
 echo "alovelace:Ada123" | sudo chpasswd
@@ -25,3 +27,5 @@ echo "ltorvalds:linuxman" | sudo chpasswd
 
 sudo useradd -c "Ida Rhodes" -m -s /bin/bash irhodes
 echo "irhodes:Ida12101989" | sudo chpasswd
+
+echo "Done creating default users."

@@ -43,6 +43,7 @@ build {
     script = "./images/scripts/blue_default_users.sh"
   }
 
+  # Install MongoDB
   provisioner "shell" {
     script = "./images/scripts/blue_mongodb_install.sh"
   }
