@@ -41,6 +41,34 @@ resource "aws_network_acl" "blue_subnet_acl" {
   }
 }
 
+// Debian DNS
+resource "aws_network_interface" "blue_dns_nic" {
+  subnet_id       = aws_subnet.blue_subnet.id
+  private_ips     = ["10.0.10.05"]
+  security_groups = [aws_security_group.range_default_sg.id]
+
+  tags = {
+    Name = "range_blue_dns"
+  }
+}
+
+resource "aws_instance" "blue_dns" {
+  ami               = data.aws_ami.dns.id
+  instance_type     = "t2.micro"
+  availability_zone = var.aws_availability_zone
+  key_name          = aws_key_pair.range_ssh_public_key.key_name
+
+  network_interface {
+    network_interface_id = aws_network_interface.blue_dns_nic.id
+    device_index         = 0
+  }
+
+  tags = {
+    "Name" = "Blue DNS"
+  }
+}
+
+// Ubuntu Workstation
 resource "aws_network_interface" "bluehost_nic" {
   subnet_id       = aws_subnet.blue_subnet.id
   private_ips     = ["10.0.10.20"]
@@ -67,6 +95,7 @@ resource "aws_instance" "bluehost" {
   }
 }
 
+// Ubuntu MongoDB
 resource "aws_network_interface" "blue_mongo_nic" {
   subnet_id       = aws_subnet.blue_subnet.id
   private_ips     = ["10.0.10.10"]
