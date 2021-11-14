@@ -12,6 +12,7 @@ Images (mis)configured for blue team use.
 
 | Name | Operating System | Version | Description |
 | ---- | ---------------- | ------- | ----------- |
+| blue-debian-dnsmasq | Debian | 9 | Debian image configured with dnsmasq |
 | blue-redhat-lamp | Red Hat Linux | 7.0 | Red Hat image configured as a LAMP stack |
 | blue-ubuntu-lamp | Ubuntu Server | 18.04 | Ubuntu Server image configured as a LAMP stack |
 | blue-ubuntu-mongodb | Ubuntu Server | 18.04 | Ubuntu Server image configured with MongoDB |
