@@ -18,6 +18,16 @@ data "aws_ami" "kali" {
   }
 }
 
+data "aws_ami" "dns" {
+  most_recent = true
+  owners      = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["blue-debian-dnsmasq"]
+  }
+}
+
 data "aws_ami" "mongo" {
   most_recent = true
   owners      = ["self"]
