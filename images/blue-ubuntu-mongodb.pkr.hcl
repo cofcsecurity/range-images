@@ -43,6 +43,11 @@ build {
     script = "./images/scripts/blue_default_users.sh"
   }
 
+  # Set default SSH configuration
+  provisioner "shell" {
+    script = "./images/scripts/blue_default_ssh.sh"
+  }
+
   # Install MongoDB
   provisioner "shell" {
     script = "./images/scripts/blue_mongodb_install.sh"
