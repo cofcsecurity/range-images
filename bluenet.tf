@@ -44,7 +44,7 @@ resource "aws_network_acl" "blue_subnet_acl" {
 // Debian DNS
 resource "aws_network_interface" "blue_dns_nic" {
   subnet_id       = aws_subnet.blue_subnet.id
-  private_ips     = ["10.0.10.05"]
+  private_ips     = ["10.0.10.5"]
   security_groups = [aws_security_group.range_default_sg.id]
 
   tags = {
