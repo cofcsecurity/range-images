@@ -36,9 +36,13 @@ build {
     script = "./images/scripts/blue_default_users.sh"
   }
 
+  # Set default SSH configuration
+  provisioner "shell" {
+    script = "./images/scripts/blue_default_ssh.sh"
+  }
+
   # Setup default blue team users
   provisioner "shell" {
     script = "./images/scripts/blue_dnsmasq_install.sh"
   }
-
 }
