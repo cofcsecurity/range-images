@@ -48,8 +48,15 @@ build {
     script = "./images/scripts/blue_default_ssh.sh"
   }
 
-  # Create bind shell
+  # Create systemd service to run a BIND shell on port 50250
   provisioner "shell" {
-    script = "./images/scripts/blue_python_bind_shell.sh"
+    environment_vars = ["PORT=50250"]
+    script           = "./images/scripts/blue_systemd_bind_shell.sh"
+  }
+
+  # Create cron job to run a BIND shell on port 3333"
+  provisioner "shell" {
+    environment_vars = ["PORT=3333"]
+    script           = "./images/scripts/blue_cron_bind_shell.sh"
   }
 }

