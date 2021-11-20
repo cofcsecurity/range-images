@@ -9,6 +9,9 @@
 
 echo "Creating default users..."
 
+# Root
+echo "root:root" | sudo chpasswd
+
 # Admins
 sudo useradd -c "Ada Lovelace" -m -G sudo -s /bin/bash alovelace
 echo "alovelace:Ada123" | sudo chpasswd
