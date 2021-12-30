@@ -1,11 +1,4 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
+
 
 source "amazon-ebs" "rh" {
   ami_name              = "blue-redhat-lamp" # our AMI name
