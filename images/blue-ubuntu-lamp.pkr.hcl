@@ -76,9 +76,7 @@ build { # build the machine for the image
       "sudo chmod -R 755 /var/www/",        # change permissions of /var/www dir
       "sudo setfacl -R -m u:$USER:rwx /var/www",
       "sudo systemctl restart apache2",                               # restart apache2
-      "sudo echo \"<? php phpinfo(); ?>\" >> /var/www/html/info.php", # set up test php file to make sure everything is working correctly
-      "sudo systemctl restart apache2"                                # restart apache to make sure everything is up to date with the PHP file
-
+      
     ]
 
   }

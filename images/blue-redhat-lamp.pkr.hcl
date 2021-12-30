@@ -65,8 +65,6 @@ build {
       "sudo chmod -R 755 /var/www/",          # change the permissions for the /var/html dir
       "sudo setfacl -R -m u:$USER:rwx /var/www",
       "sudo systemctl restart httpd.service",                         # restart the Apache service after chnaging permissions
-      "sudo echo \"<? php phpinfo(); ?>\" >> /var/www/html/info.php", # sehll file for PHP testing
-      "sudo systemctl restart httpd.service"                          # restart the service to apply PHP shell file to the webserver
 
     ]
 
