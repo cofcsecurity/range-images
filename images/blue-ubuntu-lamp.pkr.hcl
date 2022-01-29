@@ -39,7 +39,7 @@ build { # build the machine for the image
       "echo Installing Apache",
       "sudo apt update", # update repos
       "sleep 30",
-      "sudo apt install apache2 -y", # install apache2
+      "sudo apt install apache2 apache2-bin apache2-utils -y", # install apache2
       "sleep 30",
       "sudo apache2ctl configtest",                                                  # testing the config
       "sudo bash -c \"echo \"ServerName 127.0.0.1\" >> /etc/apache2/apache2.conf\"", # add the localhost to the conf file NOTE: you need to use bash -c to echo text into a conf file
@@ -75,10 +75,22 @@ build { # build the machine for the image
       "sudo chown -R $USER:$USER /var/www", # change the user and group ownership for the /var/www/html dir
       "sudo chmod -R 755 /var/www/",        # change permissions of /var/www dir
       "sudo setfacl -R -m u:$USER:rwx /var/www",
-      "sudo systemctl restart apache2",                               # restart apache2
-      
+      "sudo systemctl restart apache2", # restart apache2
+
+    ]
+
+  }
+
+  provisioner "shell" { # provisioner for installing AV test file
+
+    inline = [
+
+      "sudo apt install wget -y",                                                  # installing wget
+      "sudo bash -c \"wget -O /home/.malware https://secure.eicar.org/eicar.com\"" # AV test file
+
     ]
 
   }
 
 }
+
