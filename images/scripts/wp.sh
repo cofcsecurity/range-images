@@ -51,4 +51,3 @@ rm wp.sh
 echo "========================="
 echo "Installation is complete."
 echo "========================="
-fi
