@@ -18,6 +18,7 @@ Images (mis)configured for blue team use.
 | blue-ubuntu-mongodb | Ubuntu Server | 18.04 | Ubuntu Server image configured with MongoDB |
 | blue-ubuntu-splunk | Ubuntu Server | 18.04 | Splunk SIEM for network/event monitoring|
 | blue-ubuntu-workstation | Ubuntu Server | 16.04 | Ubuntu workstation |
+| blue-ubuntu-wordpress | Ubuntu Server | 18.04 | Basic Wordpress site sitting on our LAMP stack AMI
 
 ### Red
 
