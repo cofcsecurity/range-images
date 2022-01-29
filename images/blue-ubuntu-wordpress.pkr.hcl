@@ -1,9 +1,9 @@
 
-source "amazon-ebs" "rh" {
+source "amazon-ebs" "wordpress" {
   ami_name              = "blue-ubuntu-wordpress" # our AMI name
   instance_type         = "t2.micro"
   region                = "us-east-1"
-  source_ami            = "ami-024b40a354b860dbd" # base ami
+  source_ami            = "ami-0bfabd02a612261de" # base ami
   ssh_username          = "ubuntu"                # ssh user for configing the EC2
   ssh_pty               = "true"                  # spawn a pseudo terminal to execute commands
   ssh_timeout           = "60m"
@@ -18,9 +18,9 @@ source "amazon-ebs" "rh" {
 
 build {
 
-  name = "blue-lamp"
+  name = "blue-wordpress"
   sources = [
-    "source.amazon-ebs.rh"
+    "source.amazon-ebs.wordpress"
   ]
 
   provisioner "shell" { # provisioner for installing wordpress
