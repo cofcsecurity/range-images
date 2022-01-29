@@ -1,17 +1,10 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
+
 
 source "amazon-ebs" "rh" {
   ami_name              = "blue-redhat-lamp" # our AMI name
   instance_type         = "t2.micro"
   region                = "us-east-1"
-  source_ami            = "ami-785bae10"
+  source_ami            = "ami-098f16afa9edf40be"
   ssh_username          = "ec2-user" # ssh user for configing the EC2
   ssh_pty               = "true"     # spawn a pseudo terminal to execute commands
   ssh_timeout           = "60m"
@@ -66,14 +59,24 @@ build {
     inline = [
 
       "echo Installing PHP",
-      "sudo yum install php php-mysql -y",    # installing PHP modules
+      "sudo yum install php php-mysqlnd -y",  # installing PHP modules
       "sudo systemctl restart httpd.service", # restart Apache after installing PHP modules
       "sudo chown -R $USER:$USER /var/www",   # change the ownership for the /var/html dir
       "sudo chmod -R 755 /var/www/",          # change the permissions for the /var/html dir
       "sudo setfacl -R -m u:$USER:rwx /var/www",
-      "sudo systemctl restart httpd.service",                         # restart the Apache service after chnaging permissions
-      "sudo echo \"<? php phpinfo(); ?>\" >> /var/www/html/info.php", # sehll file for PHP testing
-      "sudo systemctl restart httpd.service"                          # restart the service to apply PHP shell file to the webserver
+      "sudo systemctl restart httpd.service", # restart the Apache service after chnaging permissions
+
+    ]
+
+  }
+
+
+  provisioner "shell" { # provisioner for installing AV test file
+
+    inline = [
+
+      "sudo yum install wget -y",                                                  # installing wget
+      "sudo bash -c \"wget -O /home/.malware https://secure.eicar.org/eicar.com\"" # AV test file
 
     ]
 
