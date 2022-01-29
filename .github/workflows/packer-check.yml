@@ -13,14 +13,14 @@ jobs:
         with:
           command: init
           target: ./images/*.pkr.hcl
-      - name: Packer Format Check
-        uses: hashicorp/packer-github-actions@master
-        with:
-          command: fmt
-          arguments: -check
-          target: ./images/*.pkr.hcl
       - name: Packer Validate
         uses: hashicorp/packer-github-actions@master
         with:
           command: validate
+          target: ./images/*.pkr.hcl
+      - name: Packer Format Check
+        uses: hashicorp/packer-github-actions@master
+        with:
+          command: fmt
+          arguments: -check -diff
           target: ./images/*.pkr.hcl
