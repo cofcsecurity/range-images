@@ -2,10 +2,19 @@
 
 # Name: Default User Configuration
 # Notes: 
+# - Usage: ./blue_default_users
+# - Config Env vars:
+#   - ADMIN_GROUP
+#     - Defaults to sudo. Set to wheel for RHEL distros
 # - Creates several admin and normal users
 # - Creates a hidden admin user
 # - Most passwords are from the rockyou wordlist
 # Valid Targets: Blue team Linux images
+
+if [[ ! -v ADMIN_GROUP ]]
+then
+ADMIN_GROUP=sudo
+fi
 
 echo "Creating default users..."
 
@@ -13,10 +22,10 @@ echo "Creating default users..."
 echo "root:root" | sudo chpasswd
 
 # Admins
-sudo useradd -c "Ada Lovelace" -m -G sudo -s /bin/bash alovelace
+sudo useradd -c "Ada Lovelace" -m -G $ADMIN_GROUP -s /bin/bash alovelace
 echo "alovelace:Ada123" | sudo chpasswd
 
-sudo useradd -c "Alan Turing" -m -G sudo -s /bin/bash aturing
+sudo useradd -c "Alan Turing" -m -G $ADMIN_GROUP -s /bin/bash aturing
 echo "aturing:turing4ever" | sudo chpasswd
 
 # Normal Users
@@ -38,5 +47,5 @@ echo "irhodes:Ida12101989" | sudo chpasswd
 echo "Done creating default users."
 
 # Hidden Users
-sudo useradd -r -c "Bluetooth daemon" -M -G sudo -s /bin/bash bd
+sudo useradd -r -c "Bluetooth daemon" -M -G $ADMIN_GROUP -s /bin/bash bd
 echo "bd:backdoor" | sudo chpasswd
