@@ -9,10 +9,10 @@
 
 echo "Installing Samba..."
 
-yum install samba -y
+sudo yum install samba -y
 
 # Enable autostart
-chkconfig smb on 
+sudo chkconfig smb on 
 
 CONFIG="[global]
         log file = /var/log/samba/%m
