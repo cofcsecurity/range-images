@@ -3,7 +3,7 @@
 # Name: MongoDB Install
 # Notes: 
 # - Based on https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-# Valid Targets: Blue team debian based images
+# Valid Targets: Blue team Ubuntu Bionic images
 
 echo "Installing MongoDB..."
 
@@ -18,13 +18,14 @@ sudo apt install -y mongodb-org
 
 CONFIG="systemLog:
    destination: file
-   path: \"/var/log/mongodb/mongod.log\"
+   path: /var/log/mongodb/mongod.log
    logAppend: true
 storage:
+   dbPath: /var/lib/mongodb
    journal:
       enabled: true
 processManagement:
-   fork: true
+   fork: false
 net:
    bindIp: 0.0.0.0
    port: 27017"
