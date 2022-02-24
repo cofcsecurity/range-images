@@ -174,7 +174,7 @@ HOME="<html><head>
 echo "$HOME" | sudo tee /var/www/html/index.html > /dev/null
 
 CGI="#!/bin/bash
-function urldecode() { : \"\${*//+/ }\"; echo -e \"\${_//%/\\x}\"; }
+function urldecode() { : \"\${*//+/ }\"; echo -e \"\${_//%/\\\x}\"; }
 
 echo \"Content-type: text/html\"
 echo \"\"
