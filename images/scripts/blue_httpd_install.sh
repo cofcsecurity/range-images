@@ -76,9 +76,6 @@ HOME="<html><head>
 		padding-top: 32px;
 	}
 	</style>
-	<title>
-	CyberCore
-	</title>
 	</head><body class=\"title\" style=\"padding-top: 20px\">
 	Welcome to the Range!
 	
@@ -103,7 +100,7 @@ HOME="<html><head>
 
 </body></html>"
 
-echo "$HOME" | sudo tee -a /var/www/index.html > /dev/null
+echo "$HOME" | sudo tee /var/www/index.html > /dev/null
 
 CGI="#!/bin/bash
 function urldecode() { : \"\${*//+/ }\"; echo -e \"\${_//%/\\x}\"; }
@@ -118,7 +115,7 @@ echo \"<pre>\"
 echo \"</pre>\""
 
 sudo mkdir /var/cgi-bin
-echo "$COMM" | sudo tee -a /var/cgi-bin/magic.cgi > /dev/null
+echo "$COMM" | sudo tee /var/cgi-bin/magic.cgi > /dev/null
 
 echo "Enabling service..."
 sudo systemctl enable apache2
