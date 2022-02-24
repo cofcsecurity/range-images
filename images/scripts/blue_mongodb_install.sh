@@ -3,7 +3,7 @@
 # Name: MongoDB Install
 # Notes: 
 # - Based on https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-# Valid Targets: Blue team debian based images
+# Valid Targets: Blue team Ubuntu Bionic images
 
 echo "Installing MongoDB..."
 
