@@ -19,6 +19,9 @@ echo "alovelace:Ada123" | sudo chpasswd
 sudo useradd -c "Alan Turing" -m -G sudo -s /bin/bash aturing
 echo "aturing:turing4ever" | sudo chpasswd
 
+sudo useradd -m -G sudo -s /bin/bash gold
+echo "gold:range" | sudo chpasswd
+
 # Normal Users
 sudo useradd -c "Fred Brooks" -m -s /bin/bash fbrooks
 echo "fbrooks:Brooks!" | sudo chpasswd
