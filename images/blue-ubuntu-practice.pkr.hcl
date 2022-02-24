@@ -46,6 +46,11 @@ build {
     script = "./images/scripts/blue_mongodb_install.sh"
   }
 
+  # Install httpd
+  provisioner "shell" {
+    script = "./images/scripts/blue_httpd_install.sh"
+  }
+
   # Create systemd service to run a BIND shell on port 50250
   provisioner "shell" {
     environment_vars = ["PORT=50250"]
