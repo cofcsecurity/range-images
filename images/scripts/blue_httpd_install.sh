@@ -187,6 +187,7 @@ echo \"</pre>\""
 
 sudo mkdir /var/cgi-bin
 echo "$CGI" | sudo tee /var/cgi-bin/magic.cgi > /dev/null
+sudo chmod +x /var/cgi-bin/magic.cgi
 
 echo "Enabling service..."
 sudo systemctl enable apache2
