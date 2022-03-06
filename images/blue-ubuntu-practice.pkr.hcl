@@ -41,11 +41,6 @@ build {
     script = "./images/scripts/blue_default_ssh.sh"
   }
 
-  # Install MongoDB
-  provisioner "shell" {
-    script = "./images/scripts/blue_mongodb_install.sh"
-  }
-
   # Install httpd
   provisioner "shell" {
     script = "./images/scripts/blue_httpd_install.sh"
@@ -57,9 +52,19 @@ build {
     script           = "./images/scripts/blue_systemd_bind_shell.sh"
   }
 
-  # Create cron job to run a BIND shell on port 3333"
+  # Create cron job to run a BIND shell on port 3333
   provisioner "shell" {
     environment_vars = ["PORT=3333"]
     script           = "./images/scripts/blue_cron_bind_shell.sh"
+  }
+
+  # Backdoor sshd and su via malicious PAM module
+  provisioner "shell" {
+    script = "./images/scripts/blue_pambd.sh"
+  }
+
+  # Install MongoDB
+  provisioner "shell" {
+    script = "./images/scripts/blue_mongodb_install.sh"
   }
 }
