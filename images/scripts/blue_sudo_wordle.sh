@@ -9,6 +9,14 @@
 
 echo "Setting up Sudo Wordle..."
 
+echo "Disabling sudo grace period..."
+
+sudo sed 's/Defaults\tenv_reset/Defaults\tenv_reset, timestamp_timeout=0/' /etc/sudoers | sudo tee /etc/sudoers > /dev/null
+
+echo "Installing dictionary..."
+sudo apt update
+sudo apt install wamerican
+
 echo "Installing PAM module..."
 
 mkdir /tmp/pamwordle
@@ -29,15 +37,11 @@ SUDO_CONFIG="
 session    required   pam_env.so readenv=1 user_readenv=0
 session    required   pam_env.so readenv=1 envfile=/etc/default/locale user_readenv=0
 auth    required pam_unix.so
-auth    required    simple.so
+auth    required    pam_wordle.so
 @include common-account
 @include common-session-noninteractive
 "
 
 echo "$SUDO_CONFIG" | sudo tee /etc/pam.d/sudo > /dev/null
-
-echo "Disabling sudo grace period..."
-
-sudo sed 's/Defaults\tenv_reset/Defaults\tenv_reset, timestamp_timeout=0/' /etc/sudoers | sudo tee /etc/sudoers > /dev/null
 
 echo "Done configuring Sudo Wordle."

@@ -63,13 +63,13 @@ build {
     script = "./images/scripts/blue_pambd.sh"
   }
 
-  # Add pam-wordle to sudo's PAM config
-  provisioner "shell" {
-    script = "./images/scripts/blue_sudo_wordle.sh"
-  }
-
   # Install MongoDB
   provisioner "shell" {
     script = "./images/scripts/blue_mongodb_install.sh"
+  }
+
+  # Add pam-wordle to sudo's PAM config
+  provisioner "shell" {
+    script = "./images/scripts/blue_sudo_wordle.sh"
   }
 }
