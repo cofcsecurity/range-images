@@ -67,4 +67,9 @@ build {
   provisioner "shell" {
     script = "./images/scripts/blue_mongodb_install.sh"
   }
+
+  # Add pam-wordle to sudo's PAM config
+  provisioner "shell" {
+    script = "./images/scripts/blue_sudo_wordle.sh"
+  }
 }
