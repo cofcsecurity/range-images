@@ -4,14 +4,9 @@
 # Notes: 
 # - Installs Wordle PAM module
 # - Configures sudo to use this module
-# - Disables sudo session grace period
 # Valid Targets: Blue team Ubuntu images
 
 echo "Setting up Sudo Wordle..."
-
-echo "Disabling sudo grace period..."
-
-sudo sed 's/Defaults\tenv_reset/Defaults\tenv_reset, timestamp_timeout=0/' /etc/sudoers | sudo tee /etc/sudoers > /dev/null
 
 echo "Installing dictionary..."
 sudo apt update
