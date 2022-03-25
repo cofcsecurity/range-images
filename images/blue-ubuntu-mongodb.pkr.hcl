@@ -40,16 +40,16 @@ build {
 
   # Setup default blue team users
   provisioner "shell" {
-    script = "./scripts/blue_default_users.sh"
+    script = "./images/scripts/blue_default_users.sh"
   }
 
   # Set default SSH configuration
   provisioner "shell" {
-    script = "./scripts/blue_default_ssh.sh"
+    script = "./images/scripts/blue_default_ssh.sh"
   }
 
   # Install MongoDB
   provisioner "shell" {
-    script = "./scripts/blue_mongodb_install.sh"
+    script = "./images/scripts/blue_mongodb_install.sh"
   }
 }
