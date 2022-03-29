@@ -85,11 +85,12 @@ build { # build the machine for the image
     inline = [
 
       "sudo apt install unzip wget -y",                                                  # installing wget
-      "sudo bash -c \"wget https://sourceforge.net/projects/sentrifugo/files/latest/download"" # Sentrifugo Download 
-      "unzip download"
-      "cp ./Sentrifugo_3.2 /var/www/Sentrifugo_3.2"
-      "chown -R nobody.nobody /var/www/Sentrifugo_3.2"
+      "wget https://sourceforge.net/projects/sentrifugo/files/latest/download", # Sentrifugo Download 
+      "unzip download",
+      "cp ./Sentrifugo_3.2 /var/www/Sentrifugo_3.2",
+      "chown -R nobody.nobody /var/www/Sentrifugo_3.2",
       "sudo systemctl restart apache2", # restart apache2
     ]
 
   }
+}
