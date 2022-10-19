@@ -32,11 +32,11 @@ build {
   ]
 
   provisioner "shell" {
-      inline = [
-        "sudo apt update",
-        "sudo apt upgrade -y"
-      ]
-    }
+    inline = [
+      "sudo apt update",
+      "sudo apt upgrade -y"
+    ]
+  }
 
   # Setup default blue team users
   provisioner "shell" {
