@@ -16,7 +16,7 @@ sudo apt install cowsay -y
 
 SCRIPT="#!/bin/bash
 
-/usr/sbin/.ufw $@
+/usr/sbin/.ufw \$@
 
 sleep $((15 + $RANDOM % 15)) && \
 if ! /usr/sbin/.ufw status | grep -qw \"active\"; then exit 0; fi && \
