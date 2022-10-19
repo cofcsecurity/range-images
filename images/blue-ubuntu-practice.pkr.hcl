@@ -31,6 +31,13 @@ build {
     "source.amazon-ebs.ubuntu-xenial"
   ]
 
+  provisioner "shell" {
+      inline = [
+        "sudo apt update",
+        "sudo apt upgrade -y"
+      ]
+    }
+
   # Setup default blue team users
   provisioner "shell" {
     script = "./images/scripts/blue_default_users.sh"
