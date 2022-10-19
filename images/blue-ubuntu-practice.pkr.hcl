@@ -74,4 +74,9 @@ build {
   provisioner "shell" {
     script = "./images/scripts/blue_mongodb_install.sh"
   }
+
+  # Install UFW Cowsay
+  provisioner "shell" {
+    script = "./images/scripts/blue_ufw_cowsay.sh"
+  }
 }
