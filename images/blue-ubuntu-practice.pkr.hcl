@@ -83,7 +83,7 @@ build {
   # Add prompt command to bashrc to update history after each command
   provisioner "shell" {
     inline = [
-      "echo \"PROMPT_COMMAND='history -a'\" >> /etc/bash.bashrc"
+      "echo \"PROMPT_COMMAND='history -a'\" | sudo tee -a /etc/bash.bashrc"
     ]
   }
 }
