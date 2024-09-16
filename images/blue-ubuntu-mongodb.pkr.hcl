@@ -7,7 +7,7 @@ packer {
   }
 }
 
-source "amazon-ebs" "ubuntu-bionic" {
+source "amazon-ebs" "ubuntu-focal" {
   ami_name              = "blue-ubuntu-mongodb"
   instance_type         = "t2.micro"
   region                = "us-east-1"
@@ -17,7 +17,7 @@ source "amazon-ebs" "ubuntu-bionic" {
 
   source_ami_filter {
     filters = {
-      name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"
+      name                = "ubuntu/images/*ubuntu-focal-20.04-amd64-server-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
@@ -35,21 +35,21 @@ build {
   name = "mongodb"
 
   sources = [
-    "source.amazon-ebs.ubuntu-bionic"
+    "source.amazon-ebs.ubuntu-focal"
   ]
 
   # Setup default blue team users
   provisioner "shell" {
-    script = "./images/scripts/blue_default_users.sh"
+    script = "./scripts/blue_default_users.sh"
   }
 
   # Set default SSH configuration
   provisioner "shell" {
-    script = "./images/scripts/blue_default_ssh.sh"
+    script = "./scripts/blue_default_ssh.sh"
   }
 
   # Install MongoDB
   provisioner "shell" {
-    script = "./images/scripts/blue_mongodb_install.sh"
+    script = "./scripts/blue_mongodb_install.sh"
   }
 }
