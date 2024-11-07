@@ -54,7 +54,7 @@ build {
   provisioner "windows-restart" {
   }
   provisioner "powershell" {
-    script           = "./scripts/blue_default_users_windows.ps1"
+    script = "./scripts/blue_default_users_windows.ps1"
   }
   provisioner "powershell" {
     script = "./scripts/blue_default_group_policy.ps1"

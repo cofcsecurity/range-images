@@ -1,3 +1,6 @@
+# an install script to create a fake simple database with mySQL on REHL
+# designed to help those learn to harded mySQL servers 
+
 #!/bin/bash
 
 # Install MySQL server
@@ -8,17 +11,16 @@ sudo dnf install -y mysql-server
 sudo systemctl start mysqld
 sudo systemctl enable mysqld
 
-# Set up MySQL root password and secure installation
-MYSQL_ROOT_PASSWORD="your_root_password"
-sudo mysql_secure_installation <<EOF
+# Set MySQL root password and secure installation
+MYSQL_ROOT_PASSWORD="root"
 
-y
-$MYSQL_ROOT_PASSWORD
-$MYSQL_ROOT_PASSWORD
-y
-y
-y
-y
+# Run MySQL commands directly to bypass mysql_secure_installation
+sudo mysql -u root <<EOF
+-- Set root password
+ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'root';
+
+-- Apply changes
+FLUSH PRIVILEGES;
 EOF
 
 # Log in to MySQL as root and create the database and table
