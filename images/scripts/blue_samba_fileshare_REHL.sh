@@ -5,7 +5,7 @@ SHARE_NAME="shared_folder"
 SHARE_PATH="/srv/samba/$SHARE_NAME"
 SAMBA_USER="sambauser"
 USER_PASSWORD="password"  # Replace with your desired password
-LAN_SUBNET="192.168.1.0/24"  # Replace with your LAN subnet
+LAN_SUBNET="10.0.10.0/24"  # Replace with your LAN subnet
 
 # Install Samba
 echo "Installing Samba..."
