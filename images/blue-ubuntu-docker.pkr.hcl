@@ -13,9 +13,9 @@ source "amazon-ebs" "docker" {
     key   = "Name"
     value = "Range Image"
   }
+}
 
-
-  build {
+build {
 
     name = "blue-docker"
     sources = [
@@ -65,4 +65,3 @@ source "amazon-ebs" "docker" {
     }
 
   }
-}

