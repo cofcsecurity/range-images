@@ -21,12 +21,16 @@ listen-address=127.0.0.1,10.0.10.5
 
 # Range Hosts
 address=/dns.blue/10.0.10.5
-address=/mongo.blue/10.0.10.10
-address=/chat.blue/10.0.10.15
-address=/work.blue/10.0.10.20
+address=/web.blue/10.0.10.10
+address=/codb.blue/10.0.10.20
+address=/cofs.blue/10.0.10.30
+address=/mail.blue/10.0.10.40
+address=/windb.blue/10.0.10.50
+address=/ad.blue/10.0.10.60
+address=/mtone.blue/10.0.10.70
+address=/mttwo.blue/10.0.10.80
 
-address=/ad.blue/10.0.10.50
-address=/web.blue/10.0.10.55
+
 "
 
 echo "Creating config file..."
