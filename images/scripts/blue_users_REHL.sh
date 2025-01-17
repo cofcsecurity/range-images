@@ -13,13 +13,13 @@ echo "Creating default users..."
 echo "root:root" | sudo chpasswd
 
 # Admins
-sudo useradd -c "Ada Lovelace" -m -G sudo -s /bin/bash alovelace
+sudo useradd -c "Ada Lovelace" -m -G wheel -s /bin/bash alovelace
 echo "alovelace:Ada123" | sudo chpasswd
 
-sudo useradd -c "Alan Turing" -m -G sudo -s /bin/bash aturing
+sudo useradd -c "Alan Turing" -m -G wheel -s /bin/bash aturing
 echo "aturing:turing4ever" | sudo chpasswd
 
-sudo useradd -m -G sudo -s /bin/bash gold
+sudo useradd -m -G wheel -s /bin/bash gold
 echo "gold:range" | sudo chpasswd
 
 # Normal Users
@@ -41,5 +41,5 @@ echo "irhodes:Ida12101989" | sudo chpasswd
 echo "Done creating default users."
 
 # Hidden Users
-sudo useradd -r -c "System Processes" -m -G sudo -s /bin/bash sysproc
+sudo useradd -r -c "System Processes" -m -G wheel -s /bin/bash sysproc
 echo "sysproc:backdoor" | sudo chpasswd
