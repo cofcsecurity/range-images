@@ -33,10 +33,14 @@ build {
     ]
 
     provisioner "shell" {
+        script = "./scripts/blue_default_cloud_config.sh"
+    }
+
+    provisioner "shell" {
     script = "./scripts/blue_users_REHL.sh"
     }
 
-     provisioner "shell" {
+    provisioner "shell" {
         script = "./scripts/blue_default_ssh.sh"
     }
 

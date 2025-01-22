@@ -33,7 +33,11 @@ build {
     ]
 
     provisioner "shell" {
-    script = "./scripts/blue_users_REHL.sh"
+        script = "./scripts/blue_default_cloud_config.sh"
+    }
+
+    provisioner "shell" {
+        script = "./scripts/blue_users_REHL.sh"
     }
 
     provisioner "shell" {
@@ -41,7 +45,7 @@ build {
     }
 
     provisioner "shell" {
-    script = "./scripts/blue_mysql_REHL.sh"
+        script = "./scripts/blue_mysql_REHL.sh"
     }
 
 }

@@ -28,3 +28,7 @@ Subsystem   sftp    /usr/lib/openssh/sftp-server
 echo "$CONFIG" | sudo tee /etc/ssh/sshd_config > /dev/null
 
 echo "Done configuring sshd."
+
+sudo systemctl restart sshd
+
+echo "restarted ssh service"
