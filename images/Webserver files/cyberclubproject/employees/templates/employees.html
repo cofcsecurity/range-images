@@ -7,17 +7,14 @@
     <header>
         <div>
             <h1 id="PageTitle">CofC Cyber Defenders</h1>
-            
         </div>
-        <!-- 
-        <div id="login">
-            <button onclick="window.location=''">Login In</button>
-        </div> -->
+
+        <div id="navbar"><br>
+            <button onclick="window.location='{% url 'home' %}'">Home</button>
+            <button onclick="window.location='{% url 'customers' %}'">Customers</button>
+        </div>
     </header>
-    <div id="navbar"><br>
-        <button onclick="window.location='{% url 'employees' %}'">Employees</button>
-        <button onclick="window.location='{% url 'customers' %}'">Customers</button>
-    </div>
+
     <div>
         <h1>About Us</h1>
         <div>

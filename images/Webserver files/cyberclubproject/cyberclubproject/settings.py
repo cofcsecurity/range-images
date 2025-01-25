@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qn_s&bjf)778jbr9)u5ju)_2_!bbf5lnd%vr=quv$^4((z9+)-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["10.0.10.10"]
+ALLOWED_HOSTS = ["10.0.10.10", "127.0.0.1"]
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cyberweb',
+    'employees',
+    'customers',
 ]
 
 MIDDLEWARE = [
@@ -78,22 +80,22 @@ WSGI_APPLICATION = 'cyberclubproject.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Employees',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST':'10.0.10.20',
-        'PORT':'3306',
-    }
-    ,'second': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'User_Info',
-        'USER': 'root',
-        'PASSWORD': 'P@ssword0192',
-        'HOST':'10.0.10.50',
-        'PORT':'3306',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'Employees',
+    #     'USER': 'root',
+    #     'PASSWORD': 'root',
+    #     'HOST':'10.0.10.20',
+    #     'PORT':'3306',
+    # }
+    # ,'second': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'User_Info',
+    #     'USER': 'root',
+    #     'PASSWORD': 'P@ssword0192',
+    #     'HOST':'10.0.10.50',
+    #     'PORT':'3306',
+    # }
 
 }
 
