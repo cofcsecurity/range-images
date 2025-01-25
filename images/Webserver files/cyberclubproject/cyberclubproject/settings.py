@@ -80,22 +80,22 @@ WSGI_APPLICATION = 'cyberclubproject.wsgi.application'
 
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'Employees',
-    #     'USER': 'root',
-    #     'PASSWORD': 'root',
-    #     'HOST':'10.0.10.20',
-    #     'PORT':'3306',
-    # }
-    # ,'second': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'User_Info',
-    #     'USER': 'root',
-    #     'PASSWORD': 'P@ssword0192',
-    #     'HOST':'10.0.10.50',
-    #     'PORT':'3306',
-    # }
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'employees',
+         'USER': 'web_user',
+         'PASSWORD': 'web',
+         'HOST':'10.0.10.20',
+         'PORT':'3306',
+		},
+	# 'second': {
+        # 'ENGINE': 'django.db.backends.mysql',
+         #'NAME': 'User_Info',
+         #'USER': 'root',
+         #'PASSWORD': 'P@ssword0192',
+         #'HOST':'10.0.10.50',
+         #'PORT':'3306',
+     #}
 
 }
 
