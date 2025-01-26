@@ -8,16 +8,17 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu-web" {
-  ami_name              = "blue-ubuntu-django"
+  ami_name              = "blue-ubuntu-cyberweb"
   instance_type         = "t2.micro"
   region                = "us-east-1"
   ssh_username          = "ubuntu"
   force_deregister      = true
   force_delete_snapshot = true
 
+  # Filter here to find the most recent version of Ubuntu 24.04 release 
   source_ami_filter {
     filters = {
-      name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"
+      name                = "ubuntu/images/*ubuntu-noble-24.04-amd64-server-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }

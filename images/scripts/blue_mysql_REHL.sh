@@ -1,7 +1,13 @@
-# an install script to create a fake simple database with mySQL on REHL
-# designed to help those learn to harded mySQL servers 
-
 #!/bin/bash
+
+# Name: MySQL Setup for REHL
+# Notes: 
+# - Installs MySQL
+# - Creates Database schema and adds fake data
+# - Creates user account within the database for webserver
+# - Environment Variables:
+#   - MYSQL_ROOT_PASSWORD="root"
+# Valid Targets: Blue team CentOS images
 
 # Install MySQL server
 sudo dnf update -y
@@ -12,7 +18,7 @@ sudo systemctl start mysqld
 sudo systemctl enable mysqld
 
 # Set MySQL root password and secure installation
-MYSQL_ROOT_PASSWORD="root"
+MYSQL_ROOT_PASSWORD="root" 
 
 # Run MySQL commands directly to bypass mysql_secure_installation
 sudo mysql -u root <<EOF
@@ -55,6 +61,10 @@ INSERT INTO employee (fname, lname, position, bank_account_number) VALUES
 
 -- Confirm data insertion
 SELECT * FROM employee;
+
+-- Add user account for webserver and give perms for user
+CREATE USER 'web_user'@'10.0.10.10' IDENTIFIED BY 'web'; -- edit default passwords here
+GRANT SELECT, INSERT, UPDATE, DELETE ON employees.* TO 'web_user'@'10.0.10.10';
 EOF
 
 echo "MySQL installation, database, and table setup complete."
