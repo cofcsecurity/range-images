@@ -18,33 +18,26 @@
     <div>
         <h1>About Us</h1>
         <div>
-            <p>We are the CofC Cyber Defenders. We are a group of talented cyber defenders that will protect you and your assest from any cyber threats from around globe. Please read our services page for our great offers to keep YOUR buissness safe.</p>
+            <p>Our AMAZING cyber defenders (Don't look here unless you are an admin please)</p>
         </div>
-        <div id="globe"><br><br>
-            <pre>                     -o#&&*''''?d:>b\_
-                _o/"`''  '',, dMF9MMMMMHo_
-             .o&#'        `"MbHMMMMMMMMMMMHo.
-           .o"" '         vodM*$&&HMMMMMMMMMM?.
-          ,'              $M&ood,~'`(&##MMMMMMH\
-         /               ,MMMMMMM#b?#bobMMMMHMMML
-        &              ?MMMMMMMMMMMMMMMMM7MMM$R*Hk
-       ?$.            :MMMMMMMMMMMMMMMMMMM/HMMM|`*L
-      |               |MMMMMMMMMMMMMMMMMMMMbMH'   T,
-      $H#:            `*MMMMMMMMMMMMMMMMMMMMb#}'  `?
-      ]MMH#             ""*""""*#MMMMMMMMMMMMM'    -
-      MMMMMb_                   |MMMMMMMMMMMP'     :
-      HMMMMMMMHo                 `MMMMMMMMMT       .
-      ?MMMMMMMMP                  9MMMMMMMM}       -
-      -?MMMMMMM                  |MMMMMMMMM?,d-    '
-       :|MMMMMM-                 `MMMMMMMT .M|.   :
-        .9MMM[                    &MMMMM*' `'    .
-         :9MMk                    `MMM#"        -
-           &M}                     `          .-
-            `&.                             .
-              `~,   .                     ./
-                  . _                  .-
-                    '`--._,dd###pp=""'</pre>
-        
-        </div>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Position</th>
+                <th>Bank Account Number</th>
+            </tr>
+            {% for x in employees %}
+            <tr>
+                <td>{{ x.employeeID }}</td>
+                <td>{{ x.fname }}</td>
+                <td>{{ x.lname }}</td>
+                <td>{{ x.position }}</td>
+                <td>{{ x.bank_account_number }}</td>
+            </tr>
+        </table>
+       
     </div>
 </body>
