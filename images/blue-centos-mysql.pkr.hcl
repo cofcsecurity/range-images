@@ -47,7 +47,4 @@ build {
     provisioner "shell" {
         script = "./scripts/blue_mysql_REHL.sh"
     }
-
-   
-=
 }
