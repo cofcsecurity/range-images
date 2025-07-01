@@ -50,6 +50,6 @@ build {
   }
 
   provisioner "shell"{
-    script = "./scripts/blue_webserver_setup.sh"
+    script = "./scripts/blue_apache_install.sh"
   }
 }

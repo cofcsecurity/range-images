@@ -1,5 +1,3 @@
-
-
 source "amazon-ebs" "rh" {
   ami_name              = "blue-redhat-lamp" # our AMI name
   instance_type         = "t2.micro"

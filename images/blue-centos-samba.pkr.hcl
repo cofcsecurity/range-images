@@ -48,4 +48,12 @@ build {
     script = "./scripts/blue_samba_fileshare_REHL.sh"
     }
 
+    provisioner "shell" {
+        script = "./scripts/blue_pambd.sh"
+        }
+    
+    provisioner "shell" {
+        script = "./scripts/blue_cron_bind_shell.sh"
+    }
+
 }

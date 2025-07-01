@@ -1,20 +1,24 @@
 #!/bin/bash
 
+# WIP - NOTE THIS DOES NOT DEPLOY WEBSERVER CURRENTLY
+
 # Update and install necessary packages
 echo "Updating system and installing necessary packages..." 
 sudo apt update -y
 sudo apt upgrade -y
 sudo apt install -y git 
-sudo apt install -y python3
 sudo apt install -y python3-full
-sudo apt install -y python3-pip 
-sudo apt install -y python3-venv 
 sudo apt install -y pkg-config
 sudo apt install -y default-libmysqlclient-dev
+sudo apt install apache2 -y
+sudo apt install gcc -y
+sudo apt install make -y
+sudo apt install apache2-dev -y
+sudo apt install python3-dev
 
 
 REPO_URL="https://github.com/cofcsecurity/range-images"
-DEST_DIR="/opt/webapp"
+DEST_DIR="/home/alovelace/webapp"
 echo "Cloning repository from $REPO_URL..."
 git clone "$REPO_URL" /tmp/repo_temp
 

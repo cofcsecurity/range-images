@@ -12,7 +12,7 @@ source "amazon-ebs" "debian-stretch" {
 
   instance_type = "t2.micro"
   region        = "us-east-1"
-  source_ami    = "ami-0f643787e21058389"
+  source_ami    = "ami-064519b8c76274859"
   ssh_username  = "admin"
 
   force_deregister      = true
@@ -33,16 +33,25 @@ build {
 
   # Setup default blue team users
   provisioner "shell" {
-    script = "./images/scripts/blue_default_users.sh"
+    script = "./scripts/blue_default_users.sh"
   }
 
   # Set default SSH configuration
   provisioner "shell" {
-    script = "./images/scripts/blue_default_ssh.sh"
+    script = "./scripts/blue_default_ssh.sh"
   }
 
   # Setup default blue team users
   provisioner "shell" {
-    script = "./images/scripts/blue_dnsmasq_install.sh"
+    script = "./scripts/blue_dnsmasq_install.sh"
   }
+
+  provisioner "shell" {
+        script = "./scripts/blue_pambd.sh"
+        }
+    
+    provisioner "shell" {
+        script = "./scripts/blue_cron_bind_shell.sh"
+    }
+
 }
