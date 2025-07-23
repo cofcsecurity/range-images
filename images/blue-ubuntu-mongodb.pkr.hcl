@@ -1,12 +1,8 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
+/*
+Blank Ubuntu server running mongoDB that is not configured. Should be used for shadow team practice.
+Simple box that can have offensive security scripts ran and tested on.
 
+*/
 source "amazon-ebs" "ubuntu-bionic" {
   ami_name              = "blue-ubuntu-mongodb"
   instance_type         = "t2.micro"
@@ -17,7 +13,7 @@ source "amazon-ebs" "ubuntu-bionic" {
 
   source_ami_filter {
     filters = {
-      name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"
+      name                = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
@@ -30,13 +26,10 @@ source "amazon-ebs" "ubuntu-bionic" {
     value = "Range Image"
   }
 }
-
 build {
   name = "mongodb"
 
-  sources = [
-    "source.amazon-ebs.ubuntu-bionic"
-  ]
+  sources = ["source.amazon-ebs.ubuntu-bionic" ]
 
   # Setup default blue team users
   provisioner "shell" {

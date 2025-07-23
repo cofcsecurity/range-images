@@ -1,4 +1,9 @@
+/*
+Kali linux source to be used by red team. 
 
+NEEDS TO BE UPDATED TO MORE CURRENT AMI FOR KALI LINUX ON AWS
+
+*/
 
 source "amazon-ebs" "kali" {
 

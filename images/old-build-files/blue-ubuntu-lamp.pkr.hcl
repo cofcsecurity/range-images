@@ -1,13 +1,4 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
-
-source "amazon-ebs" "ubuntu-bionic" {
+source "amazon-ebs" "ubuntu-bionic-lamp" {
   ami_name              = "blue-ubuntu-lamp"
   instance_type         = "t2.micro"
   region                = "us-east-1"
@@ -35,7 +26,7 @@ build { # build the machine for the image
 
   name = "blue-lamp" # name of temp ec2 for running commands
   sources = [
-    "source.amazon-ebs.ubuntu-bionic"
+    "source.amazon-ebs.ubuntu-bionic-lamp"
   ]
 
 

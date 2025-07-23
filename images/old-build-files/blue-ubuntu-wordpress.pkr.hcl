@@ -1,4 +1,3 @@
-
 source "amazon-ebs" "wordpress" {
   ami_name              = "blue-ubuntu-wordpress" # our AMI name
   instance_type         = "t2.micro"

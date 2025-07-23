@@ -1,24 +1,24 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
+/*
+WIP!!! THIS SERVER IS NOT CONFIGURED. WEB SERVICE IS NOT DEPLOYED.
 
+This is the core range webserver. The server is written in Django but should be updated to something more relavent.
+It is a simple unstyled html webserver that interacts with the databases on the range.
+
+CURRENTLY ONLY PULLS DATA FROM CENTOS MYSQL SERVER. WINDOWS MARIABD IS NOT CONFIGURED TO INTERACT. 
+THIS SHOULD BE UPDATED ASAP
+
+*/
 source "amazon-ebs" "ubuntu-web" {
-  ami_name              = "blue-ubuntu-cyberweb"
+  ami_name              = "blue-ubuntu-django"
   instance_type         = "t2.micro"
   region                = "us-east-1"
   ssh_username          = "ubuntu"
   force_deregister      = true
   force_delete_snapshot = true
 
-  # Filter here to find the most recent version of Ubuntu 24.04 release 
   source_ami_filter {
     filters = {
-      name                = "ubuntu/images/*ubuntu-noble-24.04-amd64-server-*"
+      name                = "ubuntu/images/*ubuntu-bionic-18.04-amd64-server-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
     }
@@ -31,13 +31,11 @@ source "amazon-ebs" "ubuntu-web" {
     value = "Range Image"
   }
 }
-
 build {
   name = "mongodb"
 
-  sources = [
-    "source.amazon-ebs.ubuntu-web"
-  ]
+  sources = ["source.amazon-ebs.ubuntu-web" ]
+
 
   # Setup default blue team users
   provisioner "shell" {

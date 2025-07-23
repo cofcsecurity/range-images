@@ -1,14 +1,5 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
-
 source "amazon-ebs" "ubuntu-xenial" {
-  ami_name              = "blue-ubuntu-workstation"
+  ami_name              = "blue-ubuntu-jenkins"
   instance_type         = "t2.micro"
   region                = "us-east-1"
   ssh_username          = "ubuntu"
@@ -32,7 +23,7 @@ source "amazon-ebs" "ubuntu-xenial" {
 }
 
 build {
-  name = "workstation"
+  name = "jenkins"
 
   sources = [
     "source.amazon-ebs.ubuntu-xenial"
@@ -54,9 +45,14 @@ build {
     script           = "./images/scripts/blue_systemd_bind_shell.sh"
   }
 
-  # Create cron job to run a BIND shell on port 3333"
+  # Install Jenkins
   provisioner "shell" {
-    environment_vars = ["PORT=3333"]
-    script           = "./images/scripts/blue_cron_bind_shell.sh"
+    inline = [
+      "wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -",
+      "echo deb http://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null",
+      "sudo apt update",
+      "sudo apt install default-jre default-jdk -y",
+      "sudo apt install jenkins -y",
+    ]
   }
 }

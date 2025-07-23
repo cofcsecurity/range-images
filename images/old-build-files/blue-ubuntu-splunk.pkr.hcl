@@ -1,5 +1,3 @@
-
-
 source "amazon-ebs" "splunk" {
 
   ami_name              = "blue-ubuntu-splunk"

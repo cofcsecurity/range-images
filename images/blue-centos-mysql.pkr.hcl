@@ -1,12 +1,12 @@
-packer {
-    required_plugins {
-    amazon = {
-        version = ">= 0.0.2"
-        source  = "github.com/hashicorp/amazon"
-    }
-    }
-}
+/*
+OS: CentOS
+Service: MySQL
+Interations (if applicaple): Webserver
 
+This is the MySQL database holding a list of 'employees' for the company.
+Hold mock PII data and allows memebers to learn how to interact and secure a database service via terminal. 
+
+*/
 source "amazon-ebs" "COS" {
     ami_name              = "blue-centOS-mysql" # our AMI name
     instance_type         = "t2.micro"
@@ -25,12 +25,9 @@ source "amazon-ebs" "COS" {
 }
 
 build {
-
     name = "blue-mysql-employees"
+    sources = ["source.amazon-ebs.COS"] 
 
-    sources = [
-    "source.amazon-ebs.COS"
-    ]
 
     provisioner "shell" {
         script = "./scripts/blue_default_cloud_config.sh"

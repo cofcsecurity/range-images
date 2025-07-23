@@ -1,13 +1,4 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
-
-source "amazon-ebs" "ubuntu-xenial" {
+source "amazon-ebs" "ubuntu-xenial-prac" {
   ami_name              = "blue-ubuntu-practice"
   instance_type         = "t2.micro"
   region                = "us-east-1"
