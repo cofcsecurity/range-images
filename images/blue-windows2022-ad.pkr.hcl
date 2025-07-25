@@ -1,11 +1,11 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.1"
-      source = "github.com/hashicorp/amazon"
-    }
-  }
-}
+/*
+Build block for Windows Server 2022. This server is blank with basic users created and chocolaty installed as a package manager. 
+
+Chocolaty is used because at the time it was the only reliable and easy to use package manager for scripting. '
+This could be changed to use Windows built in package manager.
+
+This should Ideally be used as baseline for an AD server.
+*/
 
 variable "region" {
   type    = string
@@ -15,7 +15,7 @@ variable "region" {
 # source blocks are generated from your builders; a source can be referenced in
 # build blocks. A build block runs provisioner and post-processors on a
 # source.
-source "amazon-ebs" "firstrun-windows" {
+source "amazon-ebs" "windows-ad" {
   ami_name      = "blue-windows2022"
   communicator  = "winrm"
   instance_type = "t2.micro"
@@ -26,7 +26,7 @@ source "amazon-ebs" "firstrun-windows" {
 
   source_ami_filter {
     filters = {
-      name                = "Windows_Server-2022-English-Full-Base-2024.01.10"
+      name                = "Windows_Server-2022-English-Full-Base-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
       
@@ -44,13 +44,9 @@ source "amazon-ebs" "firstrun-windows" {
   winrm_password = "SuperS3cr3t!!!!"
   winrm_username = "Administrator"
 }
-
-# a build block invokes sources and runs provisioning steps on them.
 build {
-  name    = "learn-packer"   
-  sources = ["source.amazon-ebs.firstrun-windows"]
-
-
+  sources = ["source.amazon-ebs.windows-ad" ]
+    
   provisioner "windows-restart" {
   }
   provisioner "powershell" {

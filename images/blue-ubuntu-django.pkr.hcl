@@ -1,12 +1,13 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
+/*
+WIP!!! THIS SERVER IS NOT CONFIGURED. WEB SERVICE IS NOT DEPLOYED.
 
+This is the core range webserver. The server is written in Django but should be updated to something more relavent.
+It is a simple unstyled html webserver that interacts with the databases on the range.
+
+CURRENTLY ONLY PULLS DATA FROM CENTOS MYSQL SERVER. WINDOWS MARIABD IS NOT CONFIGURED TO INTERACT. 
+THIS SHOULD BE UPDATED ASAP
+
+*/
 source "amazon-ebs" "ubuntu-web" {
   ami_name              = "blue-ubuntu-django"
   instance_type         = "t2.micro"
@@ -30,13 +31,11 @@ source "amazon-ebs" "ubuntu-web" {
     value = "Range Image"
   }
 }
-
 build {
   name = "mongodb"
 
-  sources = [
-    "source.amazon-ebs.ubuntu-web"
-  ]
+  sources = ["source.amazon-ebs.ubuntu-web" ]
+
 
   # Setup default blue team users
   provisioner "shell" {
@@ -49,6 +48,6 @@ build {
   }
 
   provisioner "shell"{
-    script = "./scripts/blue_webserver_setup.sh"
+    script = "./scripts/blue_apache_install.sh"
   }
 }

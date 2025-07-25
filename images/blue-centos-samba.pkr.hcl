@@ -1,12 +1,9 @@
-packer {
-    required_plugins {
-    amazon = {
-        version = ">= 0.0.2"
-        source  = "github.com/hashicorp/amazon"
-    }
-    }
-}
-
+/*
+This build server constructs the CentOS to run samba as a simple file share.
+Is untested but assumed to work.
+To test:
+- Load Range environment and attempt to connect to the network drive. 
+*/
 source "amazon-ebs" "samba" {
     ami_name              = "blue-centOS-samba" # our AMI name
     instance_type         = "t2.micro"
@@ -23,14 +20,11 @@ source "amazon-ebs" "samba" {
     value = "Range Image"
     }
 }
-
 build {
 
     name = "blue-centOS-samba"
 
-    sources = [
-    "source.amazon-ebs.samba"
-    ]
+    sources = ["source.amazon-ebs.samba" ]
 
     provisioner "shell" {
         script = "./scripts/blue_default_cloud_config.sh"

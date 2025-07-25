@@ -1,18 +1,24 @@
-packer {
-  required_plugins {
-    amazon = {
-      version = ">= 0.0.2"
-      source  = "github.com/hashicorp/amazon"
-    }
-  }
-}
+/*
+WIP!!! CURRENTLY DOES NOT WORK. NO DNS IS WORKING WITHIN THE RANGE ENVIRONMENT
+NEVER TOUCHED OTHER THAN EDITING EXISTING SCRIPTS. MAY NEED TO BE REWORKED FROM SCRATCH.
 
+This is the build file for the main DNS server on the network. Uses Ubuntu server currently
+with dnsmasq as the service to serve DNS. 
+
+*/
 source "amazon-ebs" "debian-stretch" {
   ami_name = "blue-debian-dnsmasq"
 
   instance_type = "t2.micro"
   region        = "us-east-1"
-  source_ami    = "ami-0f643787e21058389"
+  source_ami_filter {
+    filters = {
+      name                = "debian-11-amd64-*"
+      virtualization-type = "hvm"
+    }
+    most_recent = true
+    owners      = ["136693071363"] # Debian official
+  }
   ssh_username  = "admin"
 
   force_deregister      = true
@@ -27,22 +33,20 @@ source "amazon-ebs" "debian-stretch" {
 build {
   name = "dnsmasq"
 
-  sources = [
-    "source.amazon-ebs.debian-stretch"
-  ]
+  sources = ["source.amazon-ebs.debian-stretch" ]
 
   # Setup default blue team users
   provisioner "shell" {
-    script = "./images/scripts/blue_default_users.sh"
+    script = "./scripts/blue_default_users.sh"
   }
 
   # Set default SSH configuration
   provisioner "shell" {
-    script = "./images/scripts/blue_default_ssh.sh"
+    script = "./scripts/blue_default_ssh.sh"
   }
 
   # Setup default blue team users
   provisioner "shell" {
-    script = "./images/scripts/blue_dnsmasq_install.sh"
+    script = "./scripts/blue_dnsmasq_install.sh"
   }
 }
