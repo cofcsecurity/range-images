@@ -10,7 +10,7 @@ Packer Block -
 packer {
   required_plugins {
     amazon = {
-      version = ">= 0.0.2"
+      version = "1.8.0"
       source  = "github.com/hashicorp/amazon"
     }
   }
