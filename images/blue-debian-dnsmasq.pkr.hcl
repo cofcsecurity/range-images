@@ -13,7 +13,7 @@ source "amazon-ebs" "debian-stretch" {
   region        = "us-east-1"
   source_ami_filter {
     filters = {
-      name                = "debian-11-amd64-*"
+      name                = "debian-13-amd64-*"
       virtualization-type = "hvm"
     }
     most_recent = true
