@@ -12,15 +12,18 @@ jobs:
         uses: hashicorp/packer-github-actions@master
         with:
           command: init
-          target: ./images/*.pkr.hcl
+          target: ./images
+          working_directory: ./images
       - name: Packer Validate
         uses: hashicorp/packer-github-actions@master
         with:
           command: validate
-          target: ./images/*.pkr.hcl
+          target: .
+          working_directory: ./images
       - name: Packer Format Check
         uses: hashicorp/packer-github-actions@master
         with:
           command: fmt
-          arguments: -check -diff
-          target: ./images/*.pkr.hcl
+          arguments: -check -diff -recursive
+          target: .
+          working_directory: ./images
