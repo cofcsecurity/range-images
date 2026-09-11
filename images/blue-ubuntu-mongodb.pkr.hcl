@@ -29,7 +29,7 @@ source "amazon-ebs" "ubuntu-bionic" {
 build {
   name = "mongodb"
 
-  sources = ["source.amazon-ebs.ubuntu-bionic" ]
+  sources = ["source.amazon-ebs.ubuntu-bionic"]
 
   # Setup default blue team users
   provisioner "shell" {

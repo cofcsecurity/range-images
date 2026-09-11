@@ -19,7 +19,7 @@ source "amazon-ebs" "debian-stretch" {
     most_recent = true
     owners      = ["136693071363"] # Debian official
   }
-  ssh_username  = "admin"
+  ssh_username = "admin"
 
   force_deregister      = true
   force_delete_snapshot = true
@@ -33,7 +33,7 @@ source "amazon-ebs" "debian-stretch" {
 build {
   name = "dnsmasq"
 
-  sources = ["source.amazon-ebs.debian-stretch" ]
+  sources = ["source.amazon-ebs.debian-stretch"]
 
   # Setup default blue team users
   provisioner "shell" {

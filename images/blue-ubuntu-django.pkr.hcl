@@ -34,7 +34,7 @@ source "amazon-ebs" "ubuntu-web" {
 build {
   name = "mongodb"
 
-  sources = ["source.amazon-ebs.ubuntu-web" ]
+  sources = ["source.amazon-ebs.ubuntu-web"]
 
 
   # Setup default blue team users
@@ -47,7 +47,7 @@ build {
     script = "./scripts/blue_default_ssh.sh"
   }
 
-  provisioner "shell"{
+  provisioner "shell" {
     script = "./scripts/blue_apache_install.sh"
   }
 }

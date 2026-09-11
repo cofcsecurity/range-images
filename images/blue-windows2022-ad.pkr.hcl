@@ -16,20 +16,20 @@ variable "region" {
 # build blocks. A build block runs provisioner and post-processors on a
 # source.
 source "amazon-ebs" "windows-ad" {
-  ami_name      = "blue-windows2022"
-  communicator  = "winrm"
-  instance_type = "t2.micro"
-  region        = "us-east-1"
-  force_deregister = true
+  ami_name              = "blue-windows2022"
+  communicator          = "winrm"
+  instance_type         = "t2.micro"
+  region                = "us-east-1"
+  force_deregister      = true
   force_delete_snapshot = true
-  
+
 
   source_ami_filter {
     filters = {
       name                = "Windows_Server-2022-English-Full-Base-*"
       root-device-type    = "ebs"
       virtualization-type = "hvm"
-      
+
     }
     most_recent = true
     owners      = ["amazon"]
@@ -45,8 +45,8 @@ source "amazon-ebs" "windows-ad" {
   winrm_username = "Administrator"
 }
 build {
-  sources = ["source.amazon-ebs.windows-ad" ]
-    
+  sources = ["source.amazon-ebs.windows-ad"]
+
   provisioner "windows-restart" {
   }
   provisioner "powershell" {
